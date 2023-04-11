@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap');
+@font-face {
+  font-family: 'leiko';
+  src: url('/src/font/leiko/Leiko-Regular.otf');
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -18,10 +24,134 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #ced2cb;
+    font-family: 'leiko';
 }
+
+.toogle_button{
+  cursor: pointer;
+}
+.toogle_button::after{
+  position: absolute;
+  right: -50%;
+  top: 0;
+  transform: rotateZ(50deg);
+}
+
+.navlink_label{
+  color: white;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.navlink_img{
+  aspect-ratio: 1.8/1;
+}
+
+
+
+.nav_link{
+  transform: scale(0.5);
+  transition: transform ;
+  transition-timing-function: ease;
+  transition-duration: 400ms;
+  transition-delay: 100ms;
+  width: 80vw;
+  opacity: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .nav_link{
+    width: 20vw;
+  }
+}
+
+.navb{
+  opacity: 0;
+  transition: transform opacity;
+  transition-timing-function: ease;
+  transition-duration: 400ms;
+  transform: translateY(-60%);
+  transform-origin: 50%;
+
+}
+
+.main[data-nav="true"] > .navb{
+  scale: 1;
+  transform: translateY(-100%);
+  opacity: 1;
+}
+
+
+.main[data-nav="true"] > .navb > .nav_links > .nav_link {
+  transform: translateY(0%) scale(1);
+  opacity: 1;
+}
+
+.tg_button{
+  position: absolute;
+  color: #000000;
+  font-size: 1.75rem;
+  transition: transform , opacity;
+  transition-timing-function: ease;
+  transition-duration: 400ms;
+  
+  scale: 0.8;
+}
+
+.open{
+  opacity: 0;
+}
+.close{
+  opacity: 0;
+}
+
+.main[data-nav="false"] > .toogle_button:hover > .open {
+  opacity: 1;
+  scale: 1;
+}
+
+.main[data-nav="false"] > .toogle_button:hover > .toggle_text {
+  left: 100%;
+  opacity: 1;
+  scale: 1;
+}
+
+.main[data-nav="true"] > .toogle_button > .toggle_text {
+  left: 100%;
+  opacity: 1;
+  scale: 1;
+}
+
+.main[data-nav="true"] > .toogle_button {
+  background-color: #7b1dff;
+}
+
+.main[data-nav="true"]> .toogle_button > .close{
+  opacity: 1;
+  scale: 1;
+}
+
+.toggle_text{
+  opacity: 0;
+  scale: 0;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: rotate(75deg);
+  z-index: -1;
+  transition: transform , opacity ;
+  transition-timing-function: ease;
+  transition-duration: 400ms;
+}
+
+.toggle_text span{
+  /* transform: rotateZ(45deg); */
+  right: 0;
+  bottom: 0px;
+  position: absolute;
+  transform-origin: 0 100px;
+  font-size: 1.2em;
+}
+
+
